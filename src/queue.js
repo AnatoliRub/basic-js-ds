@@ -1,4 +1,3 @@
-const { NotImplementedError } = require('../lib/errors');
 const { ListNode } = require('../extensions/list-node.js');
 
 /**
@@ -21,9 +20,11 @@ class Queue {
   }
 
   enqueue(value) {
+    const newNode = {...(new ListNode(value))};
+
     if(!this.head) {
 
-      this.head = new ListNode(value);
+      this.head = newNode;
 
     } else {
 
@@ -32,22 +33,19 @@ class Queue {
       while(dNode.next) {
 
         dNode = dNode.next;
+         
+      } 
 
-      }
-
-      dNode.next = new ListNode(value);
+      dNode.next = newNode;
 
     }
   }
 
   dequeue() {
-    if(this.head.next) {
+    const dNode = this.head;
+    this.head = this.head?.next;
 
-      let dNode = this.head;
-      this.head = dNode.next;
-
-      return dNode.value;
-    }
+    return dNode?.value;
   }
 }
 
