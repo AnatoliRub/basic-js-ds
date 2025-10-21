@@ -1,3 +1,5 @@
+const { NotImplementedError } = require('../lib/errors');
+const { Node } = require('../extensions/list-tree.js');
 const { NotImplementedError } = require('../extensions/index.js');
 
 const { Node } = require('../extensions/list-tree.js');
@@ -21,7 +23,7 @@ class BinarySearchTree {
   addNode(head, data) {
 
     if (!head) return new Node(data);
-    
+
     if (head.data === data) return head;
 
     data > head.data ?
@@ -50,7 +52,7 @@ class BinarySearchTree {
     :
       this.findNode(head.right, data);
   }
-  
+
 
   remove(data) {
     if (!this.root()) return null;
